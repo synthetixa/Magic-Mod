@@ -26,8 +26,8 @@ public class Crafting {
         }
         GameRegistry.addRecipe(new ItemStack(Blocks.EnchantedCauldron), "NEN", "NCN", "NWN", 'N', net.minecraft.init.Items.NETHERBRICK, 'E', Items.IRON_INGOT, 'C', net.minecraft.init.Items.CAULDRON, 'W', net.minecraft.init.Blocks.LOG);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(net.synthetixa.magic.init.Items.ImperfectNetherStar, 4), Items.DIAMOND, new ItemStack(Items.SKULL, 1, 1));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.NETHER_STAR), net.synthetixa.magic.init.Items.ImperfectNetherStar, net.synthetixa.magic.init.Items.ImperfectNetherStar, net.synthetixa.magic.init.Items.ImperfectNetherStar, net.synthetixa.magic.init.Items.ImperfectNetherStar);
+        GameRegistry.addRecipe(new ItemStack(net.synthetixa.magic.init.Items.ImperfectNetherStar), " S ", "SWS", " S ", 'S', net.minecraft.init.Blocks.SOUL_SAND, 'W', new ItemStack(Items.SKULL, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(Items.NETHER_STAR), " I ", "IDI", " I ", 'I', net.synthetixa.magic.init.Items.ImperfectNetherStar, 'D', net.minecraft.init.Blocks.DIAMOND_BLOCK);
     }
 
 }
