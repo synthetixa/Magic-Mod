@@ -1,42 +1,30 @@
 package net.synthetixa.magic.common.tiles;
 
-import net.minecraft.client.renderer.texture.ITickable;
-import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.items.ItemStackHandler;
 
 
 /**
  * Created by ben on 7/13/16.
  */
-public class TileEnchantedCauldron extends TileEntity implements ITickable {
+public class TileEnchantedCauldron extends TileEntity {
 
-    public boolean hasCoal = false;
-    public ItemStack stack1;
-    public ItemStack stack2;
-    public ItemStack stack3;
+    public ItemStackHandler itemStackHandler = new ItemStackHandler(64);
 
-    public boolean hasOne = false;
-    public boolean hasTwo = false;
-    public boolean hasThree = false;
-
-    public boolean isComplete = false;
-    public int time = 0;
+    public TileEnchantedCauldron() {
+        itemStackHandler.setSize(5);
+    }
 
     @Override
-    public void tick() {
-        if (hasOne) {
-            time += 1;
-        }
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        itemStackHandler.serializeNBT();
 
-        if (time >= 2400) {
-            stack1 = null;
-            stack2 = null;
-            stack3 = null;
-            hasOne = false;
-            hasTwo = false;
-            hasThree = false;
-            hasCoal = false;
-            time = 0;
-        }
+        return nbt;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        itemStackHandler.deserializeNBT(nbt);
     }
 }

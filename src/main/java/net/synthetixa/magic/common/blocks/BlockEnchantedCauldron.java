@@ -57,34 +57,40 @@ public class BlockEnchantedCauldron extends BlockContainer {
         TileEnchantedCauldron te = (TileEnchantedCauldron) worldIn.getTileEntity(pos);
 
         if (heldItem != null) {
-            if (heldItem.getItem() == Items.COAL) {
-                te.hasCoal = true;
+            if (te.itemStackHandler.getStackInSlot(0) == null) {
+                te.itemStackHandler.setStackInSlot(0, heldItem);
                 heldItem.stackSize -= 1;
-            } else {
-                if (!te.hasOne) {
-                    te.stack1 = heldItem;
-                    heldItem.stackSize -= 1;
-                    te.hasOne = true;
-                } else if (te.hasOne && !te.hasTwo) {
-                    te.stack2 = heldItem;
-                    heldItem.stackSize -= 1;
-                    te.hasTwo = true;
-                } else if (te.hasTwo && !te.hasThree) {
-                    te.stack3 = heldItem;
-                    heldItem.stackSize -= 1;
-                    te.hasThree = true;
-                    te.isComplete = true;
+            } else if (te.itemStackHandler.getStackInSlot(1) == null) {
+                te.itemStackHandler.setStackInSlot(1, heldItem);
+                heldItem.stackSize -= 1;
+            } else if (te.itemStackHandler.getStackInSlot(2) == null) {
+                te.itemStackHandler.setStackInSlot(2, heldItem);
+                heldItem.stackSize -= 1;
+            } else if (te.itemStackHandler.getStackInSlot(3) == null) {
+                te.itemStackHandler.setStackInSlot(3, heldItem);
+                heldItem.stackSize -= 1;
+            } else if (te.itemStackHandler.getStackInSlot(4) == null) {
+                te.itemStackHandler.setStackInSlot(4, heldItem);
+                heldItem.stackSize -= 1;
+            }
+
+            if (te.itemStackHandler.getStackInSlot(0) != null && te.itemStackHandler.getStackInSlot(1) != null && te.itemStackHandler.getStackInSlot(2) != null && te.itemStackHandler.getStackInSlot(3) != null && te.itemStackHandler.getStackInSlot(4) == null) {
+                if (te.itemStackHandler.getStackInSlot(0).getItem() == Items.COAL) {
+                    if (te.itemStackHandler.getStackInSlot(1).getItem() == Items.NETHER_STAR && te.itemStackHandler.getStackInSlot(2).getItem() == Item.getItemFromBlock(Blocks.GLASS) && te.itemStackHandler.getStackInSlot(3).getItem() == Items.ENDER_EYE) {
+                        te.itemStackHandler.setStackInSlot(4, new ItemStack(Items.END_CRYSTAL));
+                        playerIn.inventory.addItemStackToInventory(te.itemStackHandler.getStackInSlot(4));
+                        te.itemStackHandler.setStackInSlot(0, null);
+                        te.itemStackHandler.setStackInSlot(1, null);
+                        te.itemStackHandler.setStackInSlot(2, null);
+                        te.itemStackHandler.setStackInSlot(3, null);
+                        te.itemStackHandler.setStackInSlot(4, null);
+                    }
                 }
             }
-        }
 
-        if (te.isComplete && te.time <= 2400) {
-            if (te.stack1.getItem() == Items.NETHER_STAR && te.stack2.getItem() == Item.getItemFromBlock(Blocks.GLASS) && te.stack3.getItem() == Items.ENDER_EYE) {
-                playerIn.inventory.addItemStackToInventory(new ItemStack(Items.END_CRYSTAL));
-                te.isComplete = false;
-            }
+            return true;
+        } else {
+            return false;
         }
-
-        return true;
     }
 }
