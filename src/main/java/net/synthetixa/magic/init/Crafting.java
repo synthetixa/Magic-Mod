@@ -28,6 +28,8 @@ public class Crafting {
 
         GameRegistry.addRecipe(new ItemStack(net.synthetixa.magic.init.Items.ImperfectNetherStar), " S ", "SWS", " S ", 'S', net.minecraft.init.Blocks.SOUL_SAND, 'W', new ItemStack(Items.SKULL, 1, 1));
         GameRegistry.addRecipe(new ItemStack(Items.NETHER_STAR), " I ", "IDI", " I ", 'I', net.synthetixa.magic.init.Items.ImperfectNetherStar, 'D', net.minecraft.init.Blocks.DIAMOND_BLOCK);
+
+        GameRegistry.addRecipe(new ItemStack(net.synthetixa.magic.init.Items.Wand), " E ", " N ", " D ", 'E', Items.END_CRYSTAL, 'N', Items.NETHERBRICK, 'D', Items.DIAMOND);
     }
 
 }

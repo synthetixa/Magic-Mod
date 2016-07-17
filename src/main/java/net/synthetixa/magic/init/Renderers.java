@@ -14,6 +14,8 @@ public class Renderers {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(Blocks.EnchantedCauldron), 0, new ModelResourceLocation(Compendium.MODID + ":enchanted_cauldron", "inventory"));
 
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Items.ImperfectNetherStar, 0, new ModelResourceLocation(Compendium.MODID + ":imperfect_nether_star", "inventory"));
+
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Items.Wand, 0, new ModelResourceLocation(Compendium.MODID + ":wand", "inventory"));
     }
 
 }
